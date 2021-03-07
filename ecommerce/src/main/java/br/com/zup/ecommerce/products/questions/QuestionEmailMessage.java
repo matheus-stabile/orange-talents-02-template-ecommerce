@@ -16,20 +16,20 @@ public class QuestionEmailMessage implements EmailMessage {
     private String body;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    public QuestionEmailMessage(@NotNull @Valid Product product, @NotNull @Valid User customer, @NotNull @Valid Question question) {
-        this.to = product.getOwner().getUsername();
-        this.subject = "Você tem uma nova pergunta sobre o produto " + product.getName();
+    public QuestionEmailMessage(@NotNull @Valid Question question) {
+        this.to = question.getProduct().getOwner().getUsername();
+        this.subject = "Você tem uma nova pergunta sobre o produto " + question.getProduct().getName();
         this.body = new StringBuilder()
                 .append("Em ")
                 .append(question.getCreationDate().format(formatter))
                 .append(", ")
-                .append(customer.getUsername())
+                .append(question.getCustomer().getUsername())
                 .append(" perguntou: ")
                 .append(question.getTitle())
                 .append("\n")
                 .append("<a href=\"")
                 .append("http://localhost:8080/produtos/")
-                .append(product.getId())
+                .append(question.getProduct().getId())
                 .append("/pergunta/")
                 .append(question.getId())
                 .append("\"")

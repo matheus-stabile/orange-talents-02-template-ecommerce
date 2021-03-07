@@ -64,6 +64,14 @@ public class Question implements Comparable<Question> {
         return id;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public User getCustomer() {
+        return customer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

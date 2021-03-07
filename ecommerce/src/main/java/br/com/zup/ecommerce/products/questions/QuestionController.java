@@ -24,7 +24,7 @@ public class QuestionController {
     private EntityManager entityManager;
 
     @Autowired
-    private FakeMailerService fakeMailer;
+    private FakeMailerService fakeMailerService;
 
     @PostMapping("/produtos/{id}/pergunta")
     @Transactional
@@ -36,7 +36,7 @@ public class QuestionController {
 
         entityManager.persist(question);
 
-        fakeMailer.send(new QuestionEmailMessage(product, customer, question));
+        fakeMailerService.send(new QuestionEmailMessage(question));
 
         return ResponseEntity.ok(question);
     }

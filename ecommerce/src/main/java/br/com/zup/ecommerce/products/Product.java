@@ -8,6 +8,7 @@ import br.com.zup.ecommerce.products.opinions.Opinion;
 import br.com.zup.ecommerce.products.questions.Question;
 import br.com.zup.ecommerce.users.User;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -189,14 +190,14 @@ public class Product {
         return this.questions.stream().map(mapperFunction).collect(Collectors.toCollection(TreeSet::new));
     }
 
-    /*public boolean manageStock(@Positive quantity) {
-        Assert.isTrue(quantity > 0, "Quantidade em estoque menor ou igual a 0");
+    public boolean manageStock(@Positive Integer quantity) {
+        Assert.isTrue(this.quantity > 0, "a quantidade em estoque do produto deve ser maior que 0");
 
         if (quantity <= this.quantity) {
             this.quantity -= quantity;
-            return true
+            return true;
         }
 
         return false;
-    }*/
+    }
 }
