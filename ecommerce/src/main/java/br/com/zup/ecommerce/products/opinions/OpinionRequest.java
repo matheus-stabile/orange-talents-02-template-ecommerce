@@ -32,4 +32,16 @@ public class OpinionRequest {
     public Opinion toModel(@NotNull @Valid Product product, @NotNull @Valid User customer) {
         return new Opinion(rate, title, description, product, customer);
     }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

@@ -191,7 +191,7 @@ public class Product {
     }
 
     public boolean manageStock(@Positive Integer quantity) {
-        Assert.isTrue(this.quantity > 0, "a quantidade em estoque do produto deve ser maior que 0");
+        Assert.isTrue(quantity > 0, "a quantidade a ser retirada do estoque deve ser maior que 0");
 
         if (quantity <= this.quantity) {
             this.quantity -= quantity;

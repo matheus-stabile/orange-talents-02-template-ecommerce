@@ -15,6 +15,15 @@ public class CategoryRequest {
     @ExistsIfInformed(domainClass = Category.class, fieldName = "id", message = "a categoria mãe informada não existe")
     private Long parentCategoryId;
 
+    public CategoryRequest(@NotBlank String name, Long parentCategoryId) {
+        this.name = name;
+        this.parentCategoryId = parentCategoryId;
+    }
+
+    @Deprecated
+    public CategoryRequest() {
+    }
+
     public Category toModel(EntityManager entityManager) {
 
         if (parentCategoryId != null) {

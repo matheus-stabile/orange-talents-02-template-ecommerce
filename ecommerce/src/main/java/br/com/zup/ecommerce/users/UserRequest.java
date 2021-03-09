@@ -17,6 +17,15 @@ public class UserRequest {
     @Length(min = 6)
     private String password;
 
+    @Deprecated
+    public UserRequest() {
+    }
+
+    public UserRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public User toModel() {
         return new User(username, password);
     }

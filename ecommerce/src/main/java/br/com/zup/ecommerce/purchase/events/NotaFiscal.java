@@ -18,15 +18,10 @@ public class NotaFiscal implements PurchaseEventSuccess {
     public void processPurchase(Purchase purchase) {
         isTrue(purchase.processed(), "a compra não pode ser concluída");
 
-        NotaFiscalRequest notaFiscalRequest = new NotaFiscalRequest(purchase.getProduct().getId(), purchase.getCustomer().getId());
-        HttpHeaders httpHeaders = new HttpHeaders();
-
-        httpHeaders.set("Authorization", "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJadXAgRWR1IC0gRGVzYWZpbyBFY29tbWVyY2UiLCJzdWIiOiJtYXRoZXVzLnN0YWJpbGVAenVwLmNvbS5iciIsImlhdCI6MTYxNTE0NzkwNSwiZXhwIjoxNjE1MjM0MzA1fQ.PC7FNpXjZ14N8K30QZJHQ0dCoKZf4yg6xWVjycZhPE0");
-
-        HttpEntity<NotaFiscalRequest> requestHttpEntity = new HttpEntity<>(notaFiscalRequest, httpHeaders);
-
         RestTemplate restTemplate = new RestTemplate();
 
-        restTemplate.postForEntity("http://localhost:8080/notas-fiscais", requestHttpEntity, String.class);
+        Map<String, Object> request = Map.of("purchaseId", purchase.getId(), "customerId", purchase.getCustomer().getId());
+
+        restTemplate.postForEntity("http://localhost:8080/notas-fiscais", request, String.class);
     }
 }

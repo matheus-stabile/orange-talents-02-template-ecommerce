@@ -23,4 +23,13 @@ public class PagseguroResponse implements PaymentGatewayResponse{
     public Transaction toTransaction(Purchase purchase) {
         return new Transaction(status.verify(), transactionId, purchase);
     }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    @NonNull
+    public PagseguroResponseStatus getStatus() {
+        return status;
+    }
 }

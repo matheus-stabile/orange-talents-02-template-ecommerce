@@ -2,6 +2,7 @@ package br.com.zup.ecommerce.products.questions;
 
 import br.com.zup.ecommerce.products.Product;
 import br.com.zup.ecommerce.users.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
@@ -27,11 +28,13 @@ public class Question implements Comparable<Question> {
     @NotBlank
     private String title;
 
+    @JsonIgnore
     @NotNull
     @Valid
     @ManyToOne
     private Product product;
 
+    @JsonIgnore
     @NotNull
     @Valid
     @ManyToOne

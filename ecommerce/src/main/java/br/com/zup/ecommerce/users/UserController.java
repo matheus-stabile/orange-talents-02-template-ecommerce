@@ -25,6 +25,4 @@ public class UserController {
         entityManager.persist(userRequest.toModel());
         return ResponseEntity.ok().build();
     }
-
-
 }
